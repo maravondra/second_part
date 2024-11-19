@@ -1,0 +1,15 @@
+ARG SOURCE_IMAGE=openjdk:21-jdk
+
+FROM $SOURCE_IMAGE
+
+LABEL cz.engeto.autor = "Marek"
+
+ENV SPRING_PROFILES_ACTIVE dev
+
+RUN mkdir "api"
+
+WORKDIR api
+
+COPY target/SpringBootInDocker-0.0.1-SNAPSHOT.jar app.jar
+
+ENTRYPOINT ["java","-jar","app.jar"]
