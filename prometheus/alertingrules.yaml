@@ -1,0 +1,11 @@
+groups:
+  - name: MaxLonger
+    rules:
+      - alert: HighValue
+        expr: custom_counter_request_seconds_max > 0.5
+        for: 15s
+        labels:
+          severity: warning
+        annotations:
+          summary: "High request duration detected"
+          description: "The maximum request duration is {{ $value }} seconds, exceeding the threshold of 0.5."

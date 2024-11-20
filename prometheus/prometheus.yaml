@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 15s  # Interval pro shromažďování metrik
+  evaluation_interval: 5s
+
+
+scrape_configs:
+  - job_name: 'Try metric from Spring Boot'
+    metrics_path: '/myapp/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['host.docker.internal:8080']
+        labels:
+          application: 'Spring Boot Application'
+
+rule_files:
+  - 'alertingrules.yml'
