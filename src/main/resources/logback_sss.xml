@@ -1,0 +1,51 @@
+<configuration>
+    <!-- vystup do konzole -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern> %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="json" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+            <jsonFormatter
+                    class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+                <prettyPrint>true</prettyPrint>
+            </jsonFormatter>
+            <timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS</timestampFormat>
+        </layout>
+    </appender>
+
+    <!-- do souboru -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/app.log</file>
+        <encoder>
+            <pattern>%d{MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>myapp.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- daily rollover and up to 10MB per file -->
+            <fileNamePattern>myapp.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>1kB</maxFileSize>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+<!--    <logger name="jsonLogger" level="INFO">-->
+<!--        <appender-ref ref="json"/>-->
+<!--    </logger>-->
+
+<!--    <root level="info">-->
+<!--        <appender-ref ref="json"/>-->
+<!--&lt;!&ndash;        <appender-ref ref="FILE"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <appender-ref ref="ROLLING_FILE"/>&ndash;&gt;-->
+<!--    </root>-->
+
+
+</configuration>

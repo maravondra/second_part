@@ -31,9 +31,9 @@ public class CustomerController {
         return customerRepository.findCustomerByFirstName(firstName);
     }
 
-    @GetMapping("/{lastName}")
-    public List<Customer> getCutomerAccrodingLastName(@PathVariable String lastName){
-        return customerRepository.findCustomerAccordingToSecondName(lastName);
-    }
+//    @GetMapping("/{lastName}")
+//    public List<Customer> getCutomerAccrodingLastName(@PathVariable String lastName){
+//        return customerRepository.findCustomerAccordingToSecondName(lastName);
+//    }
 
 }
